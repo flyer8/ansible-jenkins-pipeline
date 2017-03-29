@@ -1,4 +1,4 @@
-[root@srv2 roles]# ansible-playbook -i ansible.host jenkins.yml
+[root@srv2 roles]# ansible-playbook -i ansible.host playbook.yml
 
 PLAY [localhost] ***************************************************************
 

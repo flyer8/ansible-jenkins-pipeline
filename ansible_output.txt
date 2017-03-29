@@ -1,0 +1,169 @@
+[root@srv2 roles]# ansible-playbook -i ansible.host jenkins.yml
+
+PLAY [localhost] ***************************************************************
+
+TASK [setup] *******************************************************************
+ok: [localhost]
+
+TASK [geerlingguy.java : Include OS-specific variables.] ***********************
+ok: [localhost]
+
+TASK [geerlingguy.java : Include OS-specific variables for Fedora.] ************
+skipping: [localhost]
+
+TASK [geerlingguy.java : Include version-specific variables for Ubuntu.] *******
+skipping: [localhost]
+
+TASK [geerlingguy.java : Define java_packages.] ********************************
+ok: [localhost]
+
+TASK [geerlingguy.java : include] **********************************************
+included: /ansible/roles/geerlingguy.java/tasks/setup-RedHat.yml for localhost
+
+TASK [geerlingguy.java : Ensure Java is installed.] ****************************
+ok: [localhost] => (item=[u'java-1.7.0-openjdk'])
+
+TASK [geerlingguy.java : include] **********************************************
+skipping: [localhost]
+
+TASK [geerlingguy.java : include] **********************************************
+skipping: [localhost]
+
+TASK [geerlingguy.java : Set JAVA_HOME if configured.] *************************
+skipping: [localhost]
+
+TASK [jenkins : Include OS-Specific variables] *********************************
+ok: [localhost]
+
+TASK [jenkins : Define jenkins_repo_url] ***************************************
+ok: [localhost]
+
+TASK [jenkins : Define jenkins_repo_key_url] ***********************************
+ok: [localhost]
+
+TASK [jenkins : Define jenkins_pkg_url] ****************************************
+ok: [localhost]
+
+TASK [jenkins : Ensure dependencies are installed.] ****************************
+ok: [localhost]
+
+TASK [jenkins : Ensure Jenkins repo is installed.] *****************************
+ok: [localhost]
+
+TASK [jenkins : Add Jenkins repo GPG key.] *************************************
+ok: [localhost]
+
+TASK [jenkins : Download specific Jenkins version.] ****************************
+skipping: [localhost]
+
+TASK [jenkins : Check if we downloaded a specific version of Jenkins.] *********
+ok: [localhost]
+
+TASK [jenkins : Install our specific version of Jenkins.] **********************
+skipping: [localhost]
+
+TASK [jenkins : Validate Jenkins is installed and register package name.] ******
+changed: [localhost]
+
+TASK [jenkins : Install Jenkins from repository.] ******************************
+ok: [localhost]
+
+TASK [jenkins : Ensure dependencies are installed.] ****************************
+skipping: [localhost]
+
+TASK [jenkins : Add Jenkins apt repository key.] *******************************
+skipping: [localhost]
+
+TASK [jenkins : Add Jenkins apt repository.] ***********************************
+skipping: [localhost]
+
+TASK [jenkins : Download specific Jenkins version.] ****************************
+skipping: [localhost]
+
+TASK [jenkins : Check if we downloaded a specific version of Jenkins.] *********
+skipping: [localhost]
+
+TASK [jenkins : Install our specific version of Jenkins.] **********************
+skipping: [localhost]
+
+TASK [jenkins : Validate Jenkins is installed and register package name.] ******
+skipping: [localhost]
+
+TASK [jenkins : Install Jenkins from repository.] ******************************
+skipping: [localhost]
+
+TASK [jenkins : Modify variables in init file] *********************************
+changed: [localhost] => (item={u'option': u'JENKINS_ARGS', u'value': u'--prefix='})
+changed: [localhost] => (item={u'option': u'JENKINS_JAVA_OPTIONS', u'value': u'-Djenkins.install.runSetupWizard=false -Dpermissive-script-security.enabled=true'})
+
+TASK [jenkins : Set the Jenkins home directory] ********************************
+changed: [localhost]
+
+TASK [jenkins : Immediately restart Jenkins on init config changes.] ***********
+changed: [localhost]
+
+TASK [jenkins : Set HTTP port in Jenkins config.] ******************************
+changed: [localhost]
+
+TASK [jenkins : Create custom init scripts directory.] *************************
+changed: [localhost]
+
+RUNNING HANDLER [jenkins : configure default users] ****************************
+changed: [localhost]
+
+TASK [jenkins : Immediately restart Jenkins on http or user changes.] **********
+changed: [localhost]
+
+TASK [jenkins : Ensure Jenkins is started and runs on startup.] ****************
+ok: [localhost]
+
+TASK [jenkins : Wait for Jenkins to start up before proceeding.] ***************
+FAILED - RETRYING: TASK: jenkins : Wait for Jenkins to start up before proceeding. (60 retries left).
+FAILED - RETRYING: TASK: jenkins : Wait for Jenkins to start up before proceeding. (59 retries left).
+FAILED - RETRYING: TASK: jenkins : Wait for Jenkins to start up before proceeding. (58 retries left).
+ok: [localhost]
+ [WARNING]: Consider using get_url or uri module rather than running curl
+
+
+TASK [jenkins : Get the jenkins-cli jarfile from the Jenkins server.] **********
+ok: [localhost]
+
+TASK [jenkins : Remove Jenkins security init scripts after first startup.] *****
+changed: [localhost]
+
+TASK [jenkins : Create Jenkins updates folder.] ********************************
+ok: [localhost]
+
+TASK [jenkins : Update Jenkins plugin data.] ***********************************
+ok: [localhost]
+
+TASK [jenkins : Permissions for default.json updates info.] ********************
+skipping: [localhost]
+
+TASK [jenkins : Check if we're using a password file for authentication] *******
+ok: [localhost]
+
+TASK [jenkins : Install Jenkins plugins using password.] ***********************
+changed: [localhost] => (item=workflow-aggregator)
+changed: [localhost] => (item=permissive-script-security)
+changed: [localhost] => (item=github)
+
+TASK [jenkins : Install Jenkins plugins using password-file.] ******************
+skipping: [localhost] => (item=github)
+skipping: [localhost] => (item=permissive-script-security)
+skipping: [localhost] => (item=workflow-aggregator)
+
+TASK [jenkins : Restart Jenkins] ***********************************************
+changed: [localhost]
+
+TASK [jenkins : Install python-jenkins] ****************************************
+ok: [localhost]
+
+TASK [jenkins : jenkins_job] ***************************************************
+changed: [localhost]
+
+RUNNING HANDLER [jenkins : restart jenkins] ************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=34   changed=13   unreachable=0    failed=0

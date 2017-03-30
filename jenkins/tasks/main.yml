@@ -56,6 +56,5 @@
 
 # Update Jenkins and install configured plugins.
 - include: plugins.yml
-- name: Restart Jenkins
-  service: name=jenkins state=restarted
 - include: jobs.yml
+  when: result.stdout.find("200 OK") != -1
